@@ -1,6 +1,8 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+//new first 10th
 class Bogie {
     String type;
     int capacity;
