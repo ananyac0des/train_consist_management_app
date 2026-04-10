@@ -27,18 +27,11 @@ public class trainmanagementapp {
         goodsBogies.add(new GoodsBogie("Cylindrical", "Petroleum"));
         goodsBogies.add(new GoodsBogie("Rectangular", "Grain"));
 
-        // Step 2: Stream + allMatch() safety validation
-        boolean isSafe = goodsBogies.stream()
-                .allMatch(b ->
-                        !b.type.equals("Cylindrical") ||
-                                b.cargo.equals("Petroleum")
-                );
-
-        // Step 3: Display result
-        if (isSafe) {
-            System.out.println("Train is SAFETY COMPLIANT");
-        } else {
-            System.out.println("Train is NOT SAFE");
-        }
+        // Step 2: Convert list → stream → extract capacity → reduce
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)          // extract capacity
+                .reduce(0, Integer::sum);     // sum all values
+//new
+        System.out.println("Total Seating Capacity: " + totalSeats);
     }
 }
