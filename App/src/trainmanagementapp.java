@@ -16,6 +16,24 @@ class Bogie {
     }
 }
 
+// Bogie class
+class Bogie {
+    String name;
+    int capacity;
+
+    // Constructor
+    Bogie(String name, int capacity) {
+        this.name = name;
+        this.capacity = capacity;
+    }
+
+    // Display format
+    @Override
+    public String toString() {
+        return name + " (" + capacity + ")";
+    }
+}
+
 public class trainmanagementapp {
 
     public static void main(String[] args) {
