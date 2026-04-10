@@ -1,6 +1,8 @@
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+//new first 10th
 class Bogie {
     String type;
     int capacity;
@@ -13,24 +15,6 @@ class Bogie {
     @Override
     public String toString() {
         return type + " - Capacity: " + capacity;
-    }
-}
-
-// Bogie class
-class Bogie {
-    String name;
-    int capacity;
-
-    // Constructor
-    Bogie(String name, int capacity) {
-        this.name = name;
-        this.capacity = capacity;
-    }
-
-    // Display format
-    @Override
-    public String toString() {
-        return name + " (" + capacity + ")";
     }
 }
 
@@ -47,18 +31,12 @@ public class trainmanagementapp {
         bogies.add(new Bogie("Sleeper", 80));
         bogies.add(new Bogie("AC Chair", 75));
 
-        // Step 2: Convert list into stream and group by type
-        Map<String, List<Bogie>> groupedBogies = bogies.stream()
-                .collect(Collectors.groupingBy(b -> b.type));
+        // Step 2: Convert list → stream → extract capacity → reduce
+        int totalSeats = bogies.stream()
+                .map(b -> b.capacity)          // extract capacity
+                .reduce(0, Integer::sum);     // sum all values
 
-        // Step 3: Display grouped bogies
-        System.out.println("Grouped Bogies by Type:");
-
-        for (String type : groupedBogies.keySet()) {
-            System.out.println("\n" + type + ":");
-            for (Bogie b : groupedBogies.get(type)) {
-                System.out.println("  " + b);
-            }
-        }
+        // Step 3: Display result
+        System.out.println("Total Seating Capacity: " + totalSeats);
     }
 }
