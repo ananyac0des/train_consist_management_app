@@ -38,23 +38,27 @@ public class trainmanagementapp {
 
     public static void main(String[] args) {
 
-        // Step 1: Create list of bogies (reuse UC7 style)
+        // Step 1: Create list of bogies
         List<Bogie> bogies = new ArrayList<>();
 
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 60));
         bogies.add(new Bogie("First Class", 40));
         bogies.add(new Bogie("Sleeper", 80));
+        bogies.add(new Bogie("AC Chair", 75));
 
-        // Step 2: Convert list into stream + filter
-        List<Bogie> filteredBogies = bogies.stream()
-                .filter(b -> b.capacity > 60)   // condition
-                .collect(Collectors.toList());
+        // Step 2: Convert list into stream and group by type
+        Map<String, List<Bogie>> groupedBogies = bogies.stream()
+                .collect(Collectors.groupingBy(b -> b.type));
 
-        // Step 3: Display filtered bogies
-        System.out.println("Filtered Bogies (Capacity > 60):");
-        for (Bogie b : filteredBogies) {
-            System.out.println(b);
+        // Step 3: Display grouped bogies
+        System.out.println("Grouped Bogies by Type:");
+
+        for (String type : groupedBogies.keySet()) {
+            System.out.println("\n" + type + ":");
+            for (Bogie b : groupedBogies.get(type)) {
+                System.out.println("  " + b);
+            }
         }
     }
 }
