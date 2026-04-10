@@ -33,8 +33,7 @@ public class trainmanagementapp {
         int totalSeats = bogies.stream()
                 .map(b -> b.capacity)          // extract capacity
                 .reduce(0, Integer::sum);     // sum all values
-
-        // Step 3: Display result
+//new
         System.out.println("Total Seating Capacity: " + totalSeats);
     }
 }
